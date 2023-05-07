@@ -3,8 +3,7 @@
 
 namespace Lib;
 use Lib\env;
-use Lib\Mysql;
-use Lib\File;
+
 
 class Cache{
     static public function remember(string $key, int $seconds, callable $callable){
@@ -15,6 +14,6 @@ class Cache{
     static public function forget(string $key){
         $driver = env('DRIVER', 'file');
         $driver = ucfirst(trim($driver));
-        "Lib\\$driver"::forget($key);
+        "$driver"::forget($key);
     }
 }
