@@ -1,7 +1,6 @@
 <?php
 
 namespace Lib;
-use Cassandra\Column;
 use PDO;
 use Lib\env;
 
