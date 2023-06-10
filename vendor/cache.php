@@ -6,10 +6,11 @@ use Lib\env;
 
 
 class Cache{
-    static public function remember(string $key, int $seconds, callable $callable){
+    static public function remember(string $key, int $seconds, callable $callable)
+    {
         $driver = env('DRIVER', 'file');
         $driver = ucfirst(trim($driver));
-        return "Lib\\$driver"::handle($key, $seconds,  $callable);
+        return "Lib\\$driver"::remember($key, $seconds,  $callable);
     }
     static public function forget(string $key){
         $driver = env('DRIVER', 'file');

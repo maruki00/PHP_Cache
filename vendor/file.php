@@ -14,10 +14,10 @@ class File{
     private static function __init(string $path, string $file)
     {
         if(!is_dir($file)){
-            mkdir($path,0754,true);
+            @mkdir($path,0754,true);
         }
         if(!file_exists("$path/$file")){
-            touch($file);
+            @touch($file);
         }
     }
 
@@ -29,7 +29,7 @@ class File{
         return file_exists($file) && (time()-filemtime($file))<=0;
     }
 
-    public static function handle(string $key, int $seconds, callable $func):mixed
+    public static function remember(string $key, int $seconds, callable $func):mixed
     {
         $path = env('FILE_PATH','./cache/');
         $file = sprintf("%s%s",$path,$key);

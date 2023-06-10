@@ -68,7 +68,7 @@ class Mysql{
      * @param mixed $data
      * @return mixed
      */
-    public static function handle(string $key, int $seconds, callable $func):mixed
+    public static function remember(string $key, int $seconds, callable $func):mixed
     {
         $stillValid = self::isValid($key, $seconds);
         if(!$stillValid)
