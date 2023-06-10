@@ -5,13 +5,12 @@ namespace Lib;
 use \Memcache;
 use Lib\env;
 
-class Mcache
+class Cmemcache
 {
     protected  static \Memcache $memCache;
     public static function __init__()
     {
         self::$memCache ?? self::$memCache = new \Memcache();
-//        $this->memCache->
         self::$memCache->addServer(env('MEMCACHE_HOST'));
     }
 

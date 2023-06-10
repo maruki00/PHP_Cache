@@ -4,10 +4,9 @@ namespace Lib;
 use PDO;
 use Lib\env;
 
-class Mysql{
+class Cmysql{
 
     private static null|PDO $cnx = null;
-
     /**
      * @param $cdn
      * @return PDO
@@ -38,8 +37,7 @@ class Mysql{
             $statement->execute($params);
             return $statement;
         }catch(\PDOException $er){
-            echo $sql;
-            throw new \Exception($sql."---".$er->getMessage());
+            die($er->getMessage());
         }
         return false;
     }
@@ -68,13 +66,12 @@ class Mysql{
      * @param mixed $data
      * @return mixed
      */
-    public static function remember(string $key, int $seconds, callable $func):mixed
+    public static function remember(string $key, int $seconds, callable $callback):mixed
     {
         $stillValid = self::isValid($key, $seconds);
         if(!$stillValid)
         {
-            echo "valide for $seconds secondes";
-            $data = $func();
+            $data = $callback();
             self::store($key, $seconds, $data);
             return $data;
         }

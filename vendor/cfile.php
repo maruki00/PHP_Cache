@@ -4,7 +4,7 @@ namespace Lib;
 
 use Lib\env;
 
-class File{
+class Cfile{
 
     public string $path = '';
     public function __construct(){
