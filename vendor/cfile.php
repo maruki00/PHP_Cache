@@ -59,8 +59,6 @@ class Cfile{
         return unserialize(file_get_contents($file));
     }
 
-    
-
     public static function forget(string $key)
     {
         $path = env('FILE_PATH','./cache/');
