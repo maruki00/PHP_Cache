@@ -46,6 +46,21 @@ class Cfile{
         return unserialize(file_get_contents($file));
     }
 
+    public final static function forever(string $key, callable $func) : mixed
+    {
+        $path = self::getCachePath();
+        $file = sprintf("%s/%s",$path,$key);
+        if(!file_exists($file)){
+            self::__init($path, $key);
+            $data = $func();
+            file_put_contents($file,serialize($data));
+            return $data;
+        }
+        return unserialize(file_get_contents($file));
+    }
+
+    
+
     public static function forget(string $key)
     {
         $path = env('FILE_PATH','./cache/');
