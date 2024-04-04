@@ -50,6 +50,7 @@ class Cfile{
     {
         $path = env('FILE_PATH','./cache/');
         $file = sprintf("%s%s",$path,$key);
-        unlink($file);
+        if(file_exists($file))
+            unlink($file);
     }
 }
